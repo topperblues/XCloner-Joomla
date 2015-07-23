@@ -38,7 +38,7 @@
 
       unset($_SESSION['clone']);
 
-      mosRedirect("index.php?option=com_xcloner-backupandrestore", "");
+      mosRedirect("index.php?option=com_cloner", "");
   }
 
   /*Error printing
@@ -293,7 +293,7 @@
 
 
               //exit;
-              mosRedirect('index.php?option=' . $option . "&task=config", $msg);
+              mosRedirect('index2.php?option=' . $option . "&task=config", $msg);
           } else {
               $msg = "<font color='red'>ERROR... Unable to write to ".realpath($config_file).", please make it writeable!</font>";
               E_print($msg);
@@ -323,7 +323,7 @@
           }
 
           $msg = LM_LANG_MSG_DEL;
-          mosRedirect('index.php?option=' . $option . "&task=lang", $msg);
+          mosRedirect('index2.php?option=' . $option . "&task=lang", $msg);
       }
 
       $html = new HTML_cloner();
@@ -351,7 +351,7 @@
               $msg = "File $lfile could not be updated, please check it's permissions'!";
           }
 
-          mosRedirect('index.php?option=' . $option . "&task=lang", $msg);
+          mosRedirect('index2.php?option=' . $option . "&task=lang", $msg);
       }
 	
 	  $html = new HTML_cloner();
@@ -377,9 +377,9 @@
                   $msg = "File $lfile could not be created, please check it's permissions'!";
               }
               if ($task == 'save_lang_apply')
-                  mosRedirect('index.php?option=' . $option . "&task=edit_lang&langx=" . $_REQUEST['language'], $msg);
+                  mosRedirect('index2.php?option=' . $option . "&task=edit_lang&langx=" . $_REQUEST['language'], $msg);
               else
-                  mosRedirect('index.php?option=' . $option . "&task=lang", $msg);
+                  mosRedirect('index2.php?option=' . $option . "&task=lang", $msg);
           } else {
 
 
@@ -404,9 +404,9 @@
               }
           }
           if ($task == 'save_lang_apply')
-              mosRedirect('index.php?option=' . $option . "&task=edit_lang&langx=" . $_REQUEST['language'], $msg);
+              mosRedirect('index2.php?option=' . $option . "&task=edit_lang&langx=" . $_REQUEST['language'], $msg);
           else
-              mosRedirect('index.php?option=' . $option . "&task=lang", $msg);
+              mosRedirect('index2.php?option=' . $option . "&task=lang", $msg);
       }
 
       $content = "";
@@ -691,10 +691,10 @@
       if (($_REQUEST[task] == 'move') || ($_REQUEST[task2] == 'move')) {
       } else {
 
-          $source_file[0] = __DIR__ ."/restore/XCloner.php";
+          $source_file[0] = "restore/XCloner.php";
           $destination_file[0] = $_REQUEST[ftp_dir] . "/XCloner.php";
 
-          $source_file[1] = __DIR__ ."/restore/TAR.php";
+          $source_file[1] = "restore/TAR.php";
           $destination_file[1] = $_REQUEST[ftp_dir] . "/TAR.php";
       }
 
@@ -887,7 +887,7 @@
           else
               $msg = LM_MSG_BACK_8;
       }
-      mosRedirect('index.php?option=' . $option . "&task=view", $msg);
+      mosRedirect('index2.php?option=' . $option . "&task=view", $msg);
   }
 
   function clone_rename($option)
@@ -902,7 +902,7 @@
           }
 
           $msg = LM_MSG_BACK_9;
-          mosRedirect('index.php?option=' . $option . "&task=view", $msg);
+          mosRedirect('index2.php?option=' . $option . "&task=view", $msg);
       }
 
       $files = array();
@@ -1073,7 +1073,7 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
 
       // redirect to list screen
       //$msg = _DELETE_FILE_SUCCESS;
-      mosRedirect('index.php?option=' . $option . "&task=view", $msg);
+      mosRedirect('index2.php?option=' . $option . "&task=view", $msg);
   }
 
   function generateBackuprefresh($cid, $option, $backup_filename, $json = 0)
@@ -1090,7 +1090,7 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
 
       $lines = $_REQUEST['lines'];
 
-      $fperm = @fopen($perm_file, "r");
+      $fperm = fopen($perm_file, "r");
 
 
       $startf = (int)$_REQUEST['startf'];
@@ -1107,7 +1107,7 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
       }
 
 
-      $url = "index.php?option=com_xcloner-backupandrestore&task=refresh&json=$json&startf=$endf&lines=$lines&backup=$backup_filename&excl_manual=" . $_REQUEST['excl_manual'];
+      $url = "index2.php?option=com_cloner&task=refresh&json=$json&startf=$endf&lines=$lines&backup=$backup_filename&excl_manual=" . $_REQUEST['excl_manual'];
 
       if ($endf >= $lines)
           $endf = $lines;
@@ -1237,7 +1237,7 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
 	  else{
 		$status['backupSize'] = $newFileSize;
 		$status['percent'] = $percent;
-		$status['option'] = 'com_xcloner-backupandrestore';
+		$status['option'] = 'com_cloner';
 		$status['task'] = 'refresh';
 		$status['json'] = $json;
 		$status['startf'] = $endf;
@@ -1647,7 +1647,7 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
               /*if (file_exists($filename)) {
                   echo "Backup $filename created, we may continue!<br />";
                   //echo "Database backup: ".$databaseResult."<br />" ;
-                  echo "<a href='index.php?option=com_xcloner-backupandrestore&lines=" . $perm_lines . "&task=refresh&backup=$filename&excl_manual=$excl_manual' id='cLink'>Please click here to continue!</a>";
+                  echo "<a href='index2.php?option=com_cloner&lines=" . $perm_lines . "&task=refresh&backup=$filename&excl_manual=$excl_manual' id='cLink'>Please click here to continue!</a>";
 
                   return;
               } else {
@@ -2144,90 +2144,4 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
 	  $row = mysql_fetch_array($query);
 	  return $row[0];
 	}
-
-		function store_token($token, $name)
-	{
-		global $_CONFIG;
-
-		@mkdir($_CONFIG["token_dir"]);
-
-		if(!file_put_contents($_CONFIG["token_dir"]."/$name.token", serialize($token)))
-			die('<br />Could not store token! <b>Make sure that the directory '.$_CONFIG["token_dir"].'/tokens` exists and is writable!</b>');
-	}
-	
-	function load_token($name)
-	{
-		global $_CONFIG;
-		
-		if(!file_exists($_CONFIG["token_dir"]."/$name.token")) return null;
-		return @unserialize(@file_get_contents($_CONFIG["token_dir"]."/$name.token"));
-	}
-	
-	function delete_token($name)
-	{
-		global $_CONFIG;
-		
-		@unlink($_CONFIG["token_dir"]."/$name.token");
-	}
-	function authorize_dropbox(){
-		global $_CONFIG;
-		
-		include_once("classes/DropboxClient.php");
-
-		$access_token = load_token("access");
-
-		if($_CONFIG["cron_dropbox_active"]){
-			
-			$dropbox = new DropboxClient(array(
-				'app_key' => $_CONFIG['cron_dropbox_Key'], 
-				'app_secret' => $_CONFIG['cron_dropbox_Secret'],
-				'app_full_access' => false,
-			),'en');
-			
-			if(!empty($access_token)) {
-				$dropbox->SetAccessToken($access_token);
-			}	
-			
-			if($dropbox->IsAuthorized())	{
-				echo "<center><h2>Dropbox Connection Authorized!</h2></center>";
-				return;
-			}
-				
-		}else{
-			return;
-			}
-		
-		if($_CONFIG["cron_dropbox_active"] and !empty($_GET['auth_callback'])) // are we coming from dropbox's auth page?
-		{
-			// then load our previosly created request token
-			$request_token = load_token($_GET['oauth_token']);
-			if(empty($request_token)) die('Request token not found!');
-			
-			// get & store access token, the request token is not needed anymore
-			$access_token = $dropbox->GetAccessToken($request_token);	
-			store_token($access_token, "access");
-			delete_token($_GET['oauth_token']);
-			echo "<center><h2>Dropbox Connection Authorized!</h2></center>";
-			return;
-		}
-		
-		if(empty($access_token) and $_CONFIG["cron_dropbox_active"]) {
-			//$dropbox->SetAccessToken($access_token);
-			//print_r($access_token);
-			
-			
-
-			$return_url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."&auth_callback=1";
-			$auth_url = $dropbox->BuildAuthorizeUrl($return_url);
-			$request_token = $dropbox->GetRequestToken();
-			store_token($request_token, $request_token['t']);
-
-			?>
-			<script>
-				window.location="<?php echo $auth_url?>"
-			</script>
-			<?php
-			exit;
-		}
-			
-	}
+?>
