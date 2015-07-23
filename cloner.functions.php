@@ -38,7 +38,7 @@
 
       unset($_SESSION['clone']);
 
-      mosRedirect("index.php?option=com_cloner", "");
+      mosRedirect("index.php?option=com_xcloner-backupandrestore", "");
   }
 
   /*Error printing
@@ -1107,7 +1107,7 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
       }
 
 
-      $url = "index2.php?option=com_cloner&task=refresh&json=$json&startf=$endf&lines=$lines&backup=$backup_filename&excl_manual=" . $_REQUEST['excl_manual'];
+      $url = "index2.php?option=com_xcloner-backupandrestore&task=refresh&json=$json&startf=$endf&lines=$lines&backup=$backup_filename&excl_manual=" . $_REQUEST['excl_manual'];
 
       if ($endf >= $lines)
           $endf = $lines;
@@ -1237,7 +1237,7 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
 	  else{
 		$status['backupSize'] = $newFileSize;
 		$status['percent'] = $percent;
-		$status['option'] = 'com_cloner';
+		$status['option'] = 'com_xcloner-backupandrestore';
 		$status['task'] = 'refresh';
 		$status['json'] = $json;
 		$status['startf'] = $endf;
@@ -1647,7 +1647,7 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
               /*if (file_exists($filename)) {
                   echo "Backup $filename created, we may continue!<br />";
                   //echo "Database backup: ".$databaseResult."<br />" ;
-                  echo "<a href='index2.php?option=com_cloner&lines=" . $perm_lines . "&task=refresh&backup=$filename&excl_manual=$excl_manual' id='cLink'>Please click here to continue!</a>";
+                  echo "<a href='index2.php?option=com_xcloner-backupandrestore&lines=" . $perm_lines . "&task=refresh&backup=$filename&excl_manual=$excl_manual' id='cLink'>Please click here to continue!</a>";
 
                   return;
               } else {
