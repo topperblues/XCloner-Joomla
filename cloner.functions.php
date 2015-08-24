@@ -293,7 +293,7 @@
 
 
               //exit;
-              mosRedirect('index2.php?option=' . $option . "&task=config", $msg);
+              mosRedirect('index.php?option=' . $option . "&task=config", $msg);
           } else {
               $msg = "<font color='red'>ERROR... Unable to write to ".realpath($config_file).", please make it writeable!</font>";
               E_print($msg);
@@ -323,7 +323,7 @@
           }
 
           $msg = LM_LANG_MSG_DEL;
-          mosRedirect('index2.php?option=' . $option . "&task=lang", $msg);
+          mosRedirect('index.php?option=' . $option . "&task=lang", $msg);
       }
 
       $html = new HTML_cloner();
@@ -351,7 +351,7 @@
               $msg = "File $lfile could not be updated, please check it's permissions'!";
           }
 
-          mosRedirect('index2.php?option=' . $option . "&task=lang", $msg);
+          mosRedirect('index.php?option=' . $option . "&task=lang", $msg);
       }
 	
 	  $html = new HTML_cloner();
@@ -377,9 +377,9 @@
                   $msg = "File $lfile could not be created, please check it's permissions'!";
               }
               if ($task == 'save_lang_apply')
-                  mosRedirect('index2.php?option=' . $option . "&task=edit_lang&langx=" . $_REQUEST['language'], $msg);
+                  mosRedirect('index.php?option=' . $option . "&task=edit_lang&langx=" . $_REQUEST['language'], $msg);
               else
-                  mosRedirect('index2.php?option=' . $option . "&task=lang", $msg);
+                  mosRedirect('index.php?option=' . $option . "&task=lang", $msg);
           } else {
 
 
@@ -404,9 +404,9 @@
               }
           }
           if ($task == 'save_lang_apply')
-              mosRedirect('index2.php?option=' . $option . "&task=edit_lang&langx=" . $_REQUEST['language'], $msg);
+              mosRedirect('index.php?option=' . $option . "&task=edit_lang&langx=" . $_REQUEST['language'], $msg);
           else
-              mosRedirect('index2.php?option=' . $option . "&task=lang", $msg);
+              mosRedirect('index.php?option=' . $option . "&task=lang", $msg);
       }
 
       $content = "";
@@ -887,7 +887,7 @@
           else
               $msg = LM_MSG_BACK_8;
       }
-      mosRedirect('index2.php?option=' . $option . "&task=view", $msg);
+      mosRedirect('index.php?option=' . $option . "&task=view", $msg);
   }
 
   function clone_rename($option)
@@ -902,7 +902,7 @@
           }
 
           $msg = LM_MSG_BACK_9;
-          mosRedirect('index2.php?option=' . $option . "&task=view", $msg);
+          mosRedirect('index.php?option=' . $option . "&task=view", $msg);
       }
 
       $files = array();
@@ -1073,7 +1073,7 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
 
       // redirect to list screen
       //$msg = _DELETE_FILE_SUCCESS;
-      mosRedirect('index2.php?option=' . $option . "&task=view", $msg);
+      mosRedirect('index.php?option=' . $option . "&task=view", $msg);
   }
 
   function generateBackuprefresh($cid, $option, $backup_filename, $json = 0)
@@ -1107,7 +1107,7 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
       }
 
 
-      $url = "index2.php?option=com_xcloner-backupandrestore&task=refresh&json=$json&startf=$endf&lines=$lines&backup=$backup_filename&excl_manual=" . $_REQUEST['excl_manual'];
+      $url = "index.php?option=com_xcloner-backupandrestore&task=refresh&json=$json&startf=$endf&lines=$lines&backup=$backup_filename&excl_manual=" . $_REQUEST['excl_manual'];
 
       if ($endf >= $lines)
           $endf = $lines;
@@ -1647,7 +1647,7 @@ function smartReadFile($location, $filename, $mimeType='application/octet-stream
               /*if (file_exists($filename)) {
                   echo "Backup $filename created, we may continue!<br />";
                   //echo "Database backup: ".$databaseResult."<br />" ;
-                  echo "<a href='index2.php?option=com_xcloner-backupandrestore&lines=" . $perm_lines . "&task=refresh&backup=$filename&excl_manual=$excl_manual' id='cLink'>Please click here to continue!</a>";
+                  echo "<a href='index.php?option=com_xcloner-backupandrestore&lines=" . $perm_lines . "&task=refresh&backup=$filename&excl_manual=$excl_manual' id='cLink'>Please click here to continue!</a>";
 
                   return;
               } else {

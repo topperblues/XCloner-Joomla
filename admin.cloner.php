@@ -62,11 +62,11 @@
 	  }
 	  $_SESSION['clone'] = 1;
 
-	  mosRedirect('index2.php?option=' . $option, "Welcome to XCloner backend");
+	  mosRedirect('index.php?option=' . $option, "Welcome to XCloner backend");
 	} else {
 
 
-	  mosRedirect('index2.php?option=' . $option, "Incorrect username and/or password");
+	  mosRedirect('index.php?option=' . $option, "Incorrect username and/or password");
 	}
 	}*/
 
